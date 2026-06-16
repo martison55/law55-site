@@ -469,9 +469,35 @@ footer .copy{border-top:1px solid rgba(255,255,255,.03);margin-top:18px;padding-
     <div class="reveal section-title left" style="max-width:500px">Юридические новости</div>
     <div class="reveal"><p style="color:var(--faint);font-size:14px;margin-bottom:20px">Актуальные правовые новости от Ассоциации юристов России.</p></div>
     <div class="reveal" style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:rgba(28,26,20,.25);padding:4px">
-      <div style="border-radius:12px;overflow:hidden;background:rgba(12,11,10,.6);padding:2px">
-        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-channel="alrfRUS" data-limit="5" data-width="100%" data-height="460" data-color="cfc9bd" data-dark="1"></script>
+      <div id="tg-widget" style="border-radius:12px;overflow:hidden;background:rgba(12,11,10,.6);padding:2px;min-height:200px;display:flex;align-items:center;justify-content:center">
+        <div style="color:var(--faint);font-size:13px">Загрузка новостей...</div>
       </div>
+      <script>
+        (function() {
+          var w = document.getElementById('tg-widget');
+          if (!w) return;
+          var s = document.createElement('script');
+          s.src = 'https://telegram.org/js/telegram-widget.js?22';
+          s.setAttribute('data-telegram-channel', 'alrfRUS');
+          s.setAttribute('data-limit', '5');
+          s.setAttribute('data-width', '100%');
+          s.setAttribute('data-height', '460');
+          s.setAttribute('data-color', 'cfc9bd');
+          s.setAttribute('data-dark', '1');
+          s.onload = function() {
+            w.innerHTML = '';
+            w.appendChild(s);
+            // Re-run the widget init
+            if (window.TelegramWidget && window.TelegramWidget.init) {
+              window.TelegramWidget.init();
+            }
+          };
+          s.onerror = function() {
+            w.innerHTML = '<a href="https://t.me/alrfRUS" target="_blank" style="color:var(--gold);font-size:14px">Новости АЮР →</a>';
+          };
+          document.body.appendChild(s);
+        })();
+      </script>
     </div>
   </div>
 </section>
