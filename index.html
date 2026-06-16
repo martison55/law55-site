@@ -465,56 +465,12 @@ footer .copy{border-top:1px solid rgba(255,255,255,.03);margin-top:18px;padding-
 <!-- ========== NEWS ========== -->
 <section id="news" class="alt">
   <div class="container">
-    <div class="reveal"><div class="section-tag">Новости</div></div>
-    <div class="reveal section-title left" style="max-width:500px">Юридические новости</div>
-    <div class="reveal"><p style="color:var(--faint);font-size:14px;margin-bottom:20px">Актуальные правовые новости от Ассоциации юристов России.</p></div>
-    <div class="reveal" style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:rgba(28,26,20,.25);padding:4px">
-      <div id="tg-news" style="border-radius:14px;overflow:auto;border:1px solid rgba(255,255,255,.06);background:rgba(28,26,20,.25);min-height:200px;max-height:480px;padding:16px;scrollbar-width:thin;scrollbar-color:var(--gold) transparent">
-        <div style="text-align:center;padding:40px;color:var(--faint);font-size:14px">Загрузка новостей...</div>
-      </div>
-      <div style="margin-top:14px;text-align:right">
-        <a href="https://t.me/alrfRUS" target="_blank" style="color:var(--gold);font-size:12px;border:1px solid rgba(201,168,106,.25);border-radius:999px;padding:7px 16px;display:inline-block;transition:.3s" class="service-link">Все новости в Telegram →</a>
-      </div>
-      <script>
-      (function(){
-        var c=document.getElementById('tg-news');
-        if(!c)return;
-        var x=new XMLHttpRequest();
-        x.open('GET','https://tg.i-c-a.su/json/alrfRUS',true);
-        x.onload=function(){
-          try{
-            var d=JSON.parse(x.responseText);
-            var msgs=d.messages||[];
-            var html='';
-            for(var i=0;i<Math.min(msgs.length,5);i++){
-              var m=msgs[i];
-              var txt=m.message||'';
-              // Strip HTML tags for display, keep line breaks
-              var display=txt.replace(/<br\s*\/?>/gi,'\n').replace(/<[^>]+>/g,'').trim();
-              if(!display)continue;
-              var date=new Date(m.date*1000);
-              var dStr=date.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});
-              var views=m.views||0;
-              html+='<div style="padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)">';
-              html+='<div style="font-size:11px;color:var(--faint);margin-bottom:4px">'+dStr+' · '+views+' просм.</div>';
-              html+='<div style="font-size:14px;color:var(--mist);line-height:1.55">'+display.substring(0,300)+'</div>';
-              html+='</div>';
-            }
-            if(html){
-              c.innerHTML=html;
-            } else {
-              c.innerHTML='<div style="text-align:center;padding:40px;color:var(--faint);font-size:13px">Нет новостей для отображения</div>';
-            }
-          }catch(e){
-            c.innerHTML='<div style="text-align:center;padding:40px"><a href="https://t.me/alrfRUS" target="_blank" style="color:var(--gold);font-size:14px">Открыть новости АЮР →</a></div>';
-          }
-        };
-        x.onerror=function(){
-          c.innerHTML='<div style="text-align:center;padding:40px"><a href="https://t.me/alrfRUS" target="_blank" style="color:var(--gold);font-size:14px">Открыть новости АЮР →</a></div>';
-        };
-        x.send();
-      })();
-      </script>
+    <div class="reveal"><div class="section-tag">Публикации</div></div>
+    <div class="reveal section-title left" style="max-width:500px">Новости и полезные статьи</div>
+    <div class="reveal"><p style="color:var(--faint);font-size:14px;margin-bottom:20px">Скоро здесь появятся мои публикации, полезные статьи и разборы судебной практики.</p></div>
+    <div class="reveal" style="border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(28,26,20,.25);padding:40px;text-align:center">
+      <div style="color:var(--gold);font-size:14px;margin-bottom:8px">📝 Скоро</div>
+      <p style="color:var(--faint);font-size:13px">Подписывайтесь на мой Telegram @Larson_om — там я публикую новости и полезную информацию.</p>
     </div>
   </div>
 </section>
